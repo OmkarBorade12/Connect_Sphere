@@ -1,0 +1,55 @@
+:root {
+  --teams-purple: #6264A7;
+  --teams-purple-dark: #464775;
+  --teams-purple-light: #BDBDE6;
+  --gray-bg: #F5F5F5;
+  --gray-border: #E1E1E1;
+  --white: #FFFFFF;
+  --text-primary: #242424;
+  --text-secondary: #616161;
+  --hover-gray: #F0F0F0;
+  --message-self-bg: #E8EBFA;
+  /* Light purple tint */
+  --message-other-bg: #F0F0F0;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html,
+body {
+  font-family: 'Segoe UI', 'Roboto', 'Helvetica Neue', sans-serif;
+  background-color: var(--white);
+  color: var(--text-primary);
+  height: 100%;
+  width: 100%;
+  margin: 0;
+  overflow: hidden;
+}
+
+#root {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #C7C7C7;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #A0A0A0;
+}

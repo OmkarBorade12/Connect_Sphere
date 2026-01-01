@@ -1,0 +1,964 @@
+.calls-view {
+    display: flex;
+    flex: 1;
+    background: #FAFAFA;
+    height: 100%;
+    overflow: hidden;
+}
+
+.calls-sidebar {
+    width: 360px;
+    background: white;
+    border-right: 1px solid #E0E0E0;
+    display: flex;
+    flex-direction: column;
+    padding: 24px;
+}
+
+.calls-sidebar h2 {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    font-size: 22px;
+    font-weight: 600;
+    color: #242424;
+    margin: 0 0 20px 0;
+}
+
+.calls-sidebar h2 svg {
+    color: #5B5FC7;
+}
+
+.calls-search {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 12px 16px;
+    background: #F5F5F5;
+    border-radius: 10px;
+    margin-bottom: 16px;
+}
+
+.calls-search svg {
+    color: #888;
+    flex-shrink: 0;
+}
+
+.calls-search input {
+    flex: 1;
+    border: none;
+    background: transparent;
+    font-size: 14px;
+    outline: none;
+}
+
+.calls-search .clear-search {
+    background: none;
+    border: none;
+    padding: 4px;
+    cursor: pointer;
+    color: #888;
+    border-radius: 50%;
+    display: flex;
+}
+
+.calls-search .clear-search:hover {
+    background: #E0E0E0;
+}
+
+.calls-tabs {
+    display: flex;
+    gap: 8px;
+    margin-bottom: 20px;
+}
+
+.calls-tabs button {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    padding: 12px;
+    border: 1px solid #E0E0E0;
+    background: white;
+    border-radius: 10px;
+    font-size: 13px;
+    font-weight: 500;
+    color: #666;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.calls-tabs button:hover {
+    border-color: #5B5FC7;
+    color: #5B5FC7;
+}
+
+.calls-tabs button.active {
+    background: linear-gradient(135deg, #5B5FC7, #7B7FD7);
+    color: white;
+    border-color: transparent;
+}
+
+.calls-loading {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 40px;
+    color: #888;
+}
+
+.calls-loading .spinner {
+    width: 32px;
+    height: 32px;
+    border: 3px solid #E8E8E8;
+    border-top-color: #5B5FC7;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+    margin-bottom: 12px;
+}
+
+@keyframes spin {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+.no-contacts {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 40px 20px;
+    text-align: center;
+    color: #888;
+}
+
+.no-contacts svg {
+    margin-bottom: 12px;
+    opacity: 0.5;
+}
+
+.no-contacts p {
+    margin: 0 0 4px 0;
+    font-weight: 500;
+    color: #666;
+}
+
+.no-contacts span {
+    font-size: 13px;
+}
+
+/* Speed Dial */
+.speed-dial-list {
+    flex: 1;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.speed-dial-item {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    padding: 14px 16px;
+    background: #FAFAFA;
+    border-radius: 12px;
+    transition: all 0.2s;
+}
+
+.speed-dial-item:hover {
+    background: #F0F0F0;
+}
+
+.contact-avatar {
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #5B5FC7, #7B7FD7);
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 18px;
+    font-weight: 600;
+    position: relative;
+}
+
+.status-dot {
+    position: absolute;
+    bottom: 2px;
+    right: 2px;
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    border: 2px solid white;
+}
+
+.contact-info {
+    flex: 1;
+    min-width: 0;
+}
+
+.contact-name {
+    font-weight: 600;
+    color: #242424;
+    font-size: 14px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.contact-status {
+    font-size: 12px;
+    color: #888;
+    text-transform: capitalize;
+}
+
+.contact-actions {
+    display: flex;
+    gap: 6px;
+}
+
+.call-btn {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    border: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.call-btn.voice {
+    background: #E8F5E9;
+    color: #4CAF50;
+}
+
+.call-btn.voice:hover:not(:disabled) {
+    background: #4CAF50;
+    color: white;
+}
+
+.call-btn.video {
+    background: #E3F2FD;
+    color: #2196F3;
+}
+
+.call-btn.video:hover:not(:disabled) {
+    background: #2196F3;
+    color: white;
+}
+
+.call-btn.remove {
+    background: #FFEBEE;
+    color: #F44336;
+}
+
+.call-btn.remove:hover {
+    background: #F44336;
+    color: white;
+}
+
+.call-btn:disabled {
+    opacity: 0.4;
+    cursor: not-allowed;
+}
+
+.add-speed-dial-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    padding: 14px;
+    margin-top: 16px;
+    background: linear-gradient(135deg, #5B5FC7, #7B7FD7);
+    color: white;
+    border: none;
+    border-radius: 10px;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.add-speed-dial-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(91, 95, 199, 0.3);
+}
+
+/* Call History */
+.call-history-list {
+    flex: 1;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.call-history-item {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    padding: 14px 16px;
+    background: #FAFAFA;
+    border-radius: 12px;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.call-history-item:hover {
+    background: #E8EBFA;
+}
+
+.call-type-icon {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    background: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid #E0E0E0;
+}
+
+.call-type-icon .outgoing {
+    color: #4CAF50;
+}
+
+.call-type-icon .incoming {
+    color: #2196F3;
+}
+
+.call-type-icon .missed {
+    color: #F44336;
+}
+
+.call-info {
+    flex: 1;
+    min-width: 0;
+}
+
+.call-name {
+    font-weight: 600;
+    color: #242424;
+    font-size: 14px;
+}
+
+.call-meta {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 12px;
+    color: #888;
+    margin-top: 2px;
+}
+
+.call-date {
+    font-size: 12px;
+    color: #888;
+}
+
+/* Main Content */
+.calls-main {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 40px;
+}
+
+.dialpad-container {
+    text-align: center;
+    max-width: 400px;
+}
+
+.dialpad-container h3 {
+    font-size: 28px;
+    margin: 0 0 12px 0;
+    color: #242424;
+}
+
+.dialpad-container>p {
+    color: #666;
+    margin: 0 0 32px 0;
+}
+
+.make-call-section {
+    background: white;
+    border-radius: 20px;
+    padding: 40px;
+    margin-bottom: 32px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
+}
+
+.dial-icon {
+    width: 100px;
+    height: 100px;
+    margin: 0 auto 20px;
+    background: linear-gradient(135deg, #E8EBFA, #F0F0F5);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #5B5FC7;
+}
+
+.make-call-section p {
+    color: #666;
+    font-size: 14px;
+    margin: 0;
+}
+
+.call-tips {
+    background: white;
+    border-radius: 16px;
+    padding: 24px;
+    text-align: left;
+    margin-bottom: 24px;
+    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.04);
+}
+
+.call-tips h4 {
+    margin: 0 0 16px 0;
+    font-size: 16px;
+    color: #242424;
+}
+
+.call-tips ul {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.call-tips li {
+    padding: 10px 0;
+    font-size: 14px;
+    color: #555;
+    border-bottom: 1px solid #F0F0F0;
+}
+
+.call-tips li:last-child {
+    border-bottom: none;
+}
+
+.dial-stats {
+    display: flex;
+    gap: 16px;
+    justify-content: center;
+}
+
+.stat-item {
+    background: white;
+    padding: 20px 30px;
+    border-radius: 12px;
+    text-align: center;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+}
+
+.stat-value {
+    display: block;
+    font-size: 28px;
+    font-weight: 700;
+    color: #5B5FC7;
+}
+
+.stat-label {
+    font-size: 12px;
+    color: #888;
+}
+
+/* Call Overlay */
+.call-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.85);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+    animation: fadeIn 0.3s ease;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+.call-modal {
+    text-align: center;
+    color: white;
+    animation: slideUp 0.4s ease;
+}
+
+@keyframes slideUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.call-avatar-large {
+    width: 120px;
+    height: 120px;
+    margin: 0 auto 24px;
+    background: linear-gradient(135deg, #5B5FC7, #7B7FD7);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 48px;
+    font-weight: 600;
+    box-shadow: 0 8px 32px rgba(91, 95, 199, 0.4);
+}
+
+.call-modal h3 {
+    font-size: 28px;
+    margin: 0 0 8px 0;
+}
+
+.call-type-label {
+    font-size: 16px;
+    opacity: 0.8;
+    margin: 0 0 16px 0;
+}
+
+.call-timer {
+    font-size: 36px;
+    font-weight: 300;
+    margin-bottom: 24px;
+    font-family: 'Courier New', monospace;
+}
+
+.call-animation {
+    display: flex;
+    justify-content: center;
+    gap: 8px;
+    margin-bottom: 40px;
+}
+
+.call-animation span {
+    width: 12px;
+    height: 12px;
+    background: #5B5FC7;
+    border-radius: 50%;
+    animation: pulse 1.4s infinite ease-in-out;
+}
+
+.call-animation span:nth-child(1) {
+    animation-delay: 0s;
+}
+
+.call-animation span:nth-child(2) {
+    animation-delay: 0.2s;
+}
+
+.call-animation span:nth-child(3) {
+    animation-delay: 0.4s;
+}
+
+@keyframes pulse {
+
+    0%,
+    80%,
+    100% {
+        transform: scale(0.6);
+        opacity: 0.5;
+    }
+
+    40% {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+.call-controls {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 24px;
+}
+
+.call-control-btn {
+    width: 56px;
+    height: 56px;
+    border-radius: 50%;
+    border: none;
+    background: rgba(255, 255, 255, 0.1);
+    color: white;
+    font-size: 24px;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.call-control-btn:hover {
+    background: rgba(255, 255, 255, 0.2);
+}
+
+.call-control-btn.mute {
+    background: rgba(244, 67, 54, 0.2);
+}
+
+.end-call-btn {
+    width: 72px;
+    height: 72px;
+    border-radius: 50%;
+    border: none;
+    background: linear-gradient(135deg, #F44336, #D32F2F);
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.2s;
+    box-shadow: 0 4px 20px rgba(244, 67, 54, 0.4);
+}
+
+.end-call-btn:hover {
+    transform: scale(1.05);
+}
+
+/* Add Contact Modal */
+.add-contact-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+}
+
+.add-contact-modal {
+    background: white;
+    border-radius: 16px;
+    width: 360px;
+    max-height: 500px;
+    overflow: hidden;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.2);
+}
+
+.add-contact-modal .modal-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 20px;
+    border-bottom: 1px solid #E8E8E8;
+}
+
+.add-contact-modal .modal-header h3 {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin: 0;
+    font-size: 18px;
+    color: #242424;
+}
+
+.add-contact-modal .close-btn {
+    background: none;
+    border: none;
+    padding: 8px;
+    cursor: pointer;
+    color: #666;
+    border-radius: 8px;
+}
+
+.add-contact-modal .close-btn:hover {
+    background: #F0F0F0;
+}
+
+.user-list {
+    max-height: 400px;
+    overflow-y: auto;
+    padding: 12px;
+}
+
+.no-users {
+    text-align: center;
+    color: #888;
+    padding: 40px 20px;
+}
+
+.user-item {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    padding: 12px;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.user-item:hover {
+    background: #E8EBFA;
+}
+
+.user-avatar {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #5B5FC7, #7B7FD7);
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 16px;
+    font-weight: 600;
+}
+
+.user-name {
+    flex: 1;
+    font-weight: 500;
+    color: #242424;
+}
+
+.add-icon {
+    color: #5B5FC7;
+}
+
+/* Scrollbar */
+.speed-dial-list::-webkit-scrollbar,
+.call-history-list::-webkit-scrollbar,
+.user-list::-webkit-scrollbar {
+    width: 6px;
+}
+
+.speed-dial-list::-webkit-scrollbar-track,
+.call-history-list::-webkit-scrollbar-track,
+.user-list::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+.speed-dial-list::-webkit-scrollbar-thumb,
+.call-history-list::-webkit-scrollbar-thumb,
+.user-list::-webkit-scrollbar-thumb {
+    background: #D0D0D0;
+    border-radius: 3px;
+}
+
+/* Calls Dashboard */
+.calls-dashboard {
+    width: 100%;
+    max-width: 800px;
+    padding: 0 20px;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    padding-top: 40px;
+}
+
+.dashboard-header {
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+.dashboard-header h3 {
+    font-size: 28px;
+    color: #242424;
+    margin: 0 0 8px 0;
+}
+
+.dashboard-header p {
+    color: #666;
+    margin: 0 0 24px 0;
+}
+
+.direct-call-input {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    background: white;
+    padding: 8px 8px 8px 20px;
+    border-radius: 50px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+    max-width: 500px;
+    margin: 0 auto;
+    border: 1px solid #E0E0E0;
+}
+
+.direct-call-input:focus-within {
+    border-color: #5B5FC7;
+    box-shadow: 0 4px 24px rgba(91, 95, 199, 0.15);
+}
+
+.direct-call-input input {
+    flex: 1;
+    border: none;
+    outline: none;
+    font-size: 16px;
+    background: transparent;
+}
+
+.direct-call-actions {
+    display: flex;
+    gap: 8px;
+}
+
+.call-btn-large {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    border: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.call-btn-large:disabled {
+    background: #E0E0E0;
+    color: #AAA;
+    cursor: not-allowed;
+}
+
+.call-btn-large.voice:not(:disabled) {
+    background: #4CAF50;
+    color: white;
+}
+
+.call-btn-large.video:not(:disabled) {
+    background: #2196F3;
+    color: white;
+}
+
+.call-btn-large:hover:not(:disabled) {
+    transform: scale(1.05);
+}
+
+/* Speed Dial Grid */
+.speed-dial-grid-section {
+    flex: 1;
+    overflow-y: auto;
+}
+
+.speed-dial-grid-section h4 {
+    color: #666;
+    margin: 0 0 16px 0;
+    font-size: 14px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.speed-dial-grid-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 20px;
+}
+
+.speed-dial-card {
+    background: white;
+    padding: 20px;
+    border-radius: 16px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+    transition: all 0.2s;
+    border: 2px solid transparent;
+}
+
+.speed-dial-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+}
+
+.card-avatar {
+    width: 64px;
+    height: 64px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #5B5FC7, #7B7FD7);
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 24px;
+    font-weight: 600;
+    margin-bottom: 12px;
+    position: relative;
+}
+
+.card-info {
+    margin-bottom: 16px;
+}
+
+.card-name {
+    display: block;
+    font-weight: 600;
+    color: #242424;
+    margin-bottom: 4px;
+}
+
+.card-status {
+    font-size: 12px;
+    color: #888;
+    text-transform: capitalize;
+}
+
+.card-actions {
+    display: flex;
+    gap: 12px;
+    margin-top: auto;
+}
+
+.card-btn {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    border: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.2s;
+    background: #F5F5F5;
+    color: #666;
+}
+
+.card-btn:hover {
+    background: #E8EBFA;
+    color: #5B5FC7;
+}
+
+.card-btn.voice:hover {
+    background: #E8F5E9;
+    color: #4CAF50;
+}
+
+.card-btn.video:hover {
+    background: #E3F2FD;
+    color: #2196F3;
+}
+
+.empty-speed-dial {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 200px;
+    background: rgba(0, 0, 0, 0.02);
+    border-radius: 16px;
+    color: #999;
+    border: 2px dashed #E0E0E0;
+}
